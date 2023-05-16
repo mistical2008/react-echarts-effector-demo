@@ -4,7 +4,7 @@ export const option: EChartsOption = {
 	title: {
 		text: "ECharts Getting Started Example",
 	},
-	tooltip: {},
+	tooltip: { show: true },
 	legend: {
 		data: ["sales"],
 	},

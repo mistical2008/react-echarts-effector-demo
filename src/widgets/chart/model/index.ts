@@ -8,34 +8,12 @@ import {
 	sample,
 } from "effector"
 import { createGate, useUnit } from "effector-react"
-import { delay } from "patronum"
 import { attachLogger } from "effector-logger"
 import { MutableRefObject } from "react"
 
 import * as config from "../config"
 import { pipe } from "fp-ts/function"
 import { set } from "spectacles-ts"
-
-// export const option: EChartsOption = {
-// 	title: {
-// 		text: "ECharts Getting Started Example",
-// 	},
-// 	tooltip: {},
-// 	legend: {
-// 		data: ["sales"],
-// 	},
-// 	xAxis: {
-// 		data: ["Shirts", "Cardigans", "Chiffons", "Pants", "Heels", "Socks"],
-// 	},
-// 	yAxis: {},
-// 	series: [
-// 		{
-// 			name: "sales",
-// 			type: "bar",
-// 			data: [5, 20, 36, 10, 10, 20],
-// 		},
-// 	],
-// }
 
 type GateState = {
   echartReactInstance: MutableRefObject<null | EChartsReact>;
@@ -49,11 +27,6 @@ const domain = createDomain()
 attachLogger(domain)
 
 export const Gate = createGate({ domain, defaultState })
-
-const setInstanceFx = createEffect({
-	handler: async () => await Promise.resolve("hello"),
-	domain,
-})
 
 const updateOption = ({
 	instance,
@@ -106,7 +79,12 @@ sample({
 	target: setOptionFx,
 })
 
-// some outer world data updates
+export const useModel = () =>
+	useUnit({
+		option: $option,
+	})
+
+// some weird outer world data updates
 setTimeout(() => {
 	updateSales([1])
 	setTimeout(() => {
@@ -128,8 +106,3 @@ setTimeout(() => {
 		}, 1000)
 	}, 1000)
 }, 2000)
-
-export const useModel = () =>
-	useUnit({
-		option: $option,
-	})
