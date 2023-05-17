@@ -1,11 +1,3 @@
-# Effector React Vite
+# Small demo with Echarts and Effector on React
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/effector-react)
-
-In the box:
-
-- effector v22
-- patronum v1
-- react v18
-- vite v4
-- typescript v4.9.5
+To start project just type `pnpm dev`
